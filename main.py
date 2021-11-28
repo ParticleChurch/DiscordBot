@@ -46,7 +46,7 @@ def color(r, g, b):
     return r << 16 | g << 8 | b
 
 def get_cmds_embed():
-    embed = discord.Embed(color = color(0, 0, 0))
+    embed = discord.Embed(color = color(30, 35, 40))
     embed.add_field(name = f"{CMD_PREFIX}cmds", value = "@everyone\nSend this message.", inline = False)
     embed.add_field(name = f"{CMD_PREFIX}ping", value = "@everyone\nReply \"Pong!\".", inline = False)
     embed.add_field(name = f"{CMD_PREFIX}purge `count`", value = "<@&794044623353937951>\nDelete the most recent `count` messages in this channel.", inline = False)
@@ -77,6 +77,13 @@ async def purge(ctx, message_count: int):
 @commands.has_role("Moderator")
 async def reboot(ctx):
     await ctx.reply("Goodbye! I should be back shortly...", mention_author = False)
+    
+    try:
+        with open(ACTIVITY_FILE, "w") as f:
+            f.write("0.0")
+    except:
+        pass
+    
     await bot.close()
 
 '''
