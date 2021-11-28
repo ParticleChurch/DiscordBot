@@ -23,7 +23,7 @@ API_TOKEN_FILE = LOCAL_DIRECTORY / "api_token.pkey"
 try:
     with open(ACTIVITY_FILE, "r") as f:
         contents = f.read()
-    if time.time() - float(contents) < 0.01:
+    if time.time() - float(contents) < 30:
         print("Bot is already running elsewhere.")
         quit()
 except (OSError, ValueError) as e:
